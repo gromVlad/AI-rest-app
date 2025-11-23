@@ -5,7 +5,7 @@ import { WorkoutSession } from '../../../models';
 
 @Component({
   selector: 'app-history',
-  standalone: false,
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './history.html',
   styleUrls: ['./history.css']

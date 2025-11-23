@@ -227,10 +227,10 @@ export class WorkoutService implements OnDestroy {
         this.restTimerSubscription?.unsubscribe();
         this.restTimerSubscription = null;
 
-        if (currentState.currentRound >= this.config.rounds) {
+        if (this.config && currentState.currentRound >= this.config.rounds) {
           // Workout is complete
           this.completeWorkout();
-        } else {
+        } else if (this.config) {
           // Move to the next round
           const nextRoundState: WorkoutState = {
             ...currentState,
@@ -279,7 +279,7 @@ export class WorkoutService implements OnDestroy {
         type: this.config.mode,
         rounds: this.config.rounds,
         duration: this.config.roundDuration * this.config.rounds +
-                  this.config.restDuration * (this.config.rounds - 1), // Total duration including rest
+                  this.config.restDuration * (this.config.rounds > 1 ? this.config.rounds - 1 : 0), // Total duration including rest
         usedCombos: [] // In a real app, we would track which combos were used
       };
       this.historyService.saveWorkoutSession(session);
@@ -300,7 +300,7 @@ export class WorkoutService implements OnDestroy {
 
   resumeWorkout(): void {
     const state = this.stateSubject.value;
-    if (state.status === 'paused') {
+    if (state.status === 'paused' && this.config) {
       const newState: WorkoutState = {
         ...state,
         status: 'running'
@@ -308,7 +308,7 @@ export class WorkoutService implements OnDestroy {
       this.stateSubject.next(newState);
 
       // Continue with the current round or rest period
-      if (state.restTime > 0 && state.restTime < this.config?.restDuration) {
+      if (state.restTime > 0 && state.restTime < this.config.restDuration) {
         this.startRestPeriod();
       } else {
         this.startRoundTimer();

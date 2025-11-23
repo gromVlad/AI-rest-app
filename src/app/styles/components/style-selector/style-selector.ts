@@ -1,15 +1,15 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StyleService, Style } from '../../style.service';
 
 @Component({
   selector: 'app-style-selector',
-  standalone: false,
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './style-selector.html',
   styleUrls: ['./style-selector.css']
 })
-export class StyleSelectorComponent {
+export class StyleSelectorComponent implements OnInit {
   @Output() styleSelected = new EventEmitter<'boxing' | 'muaythai' | 'mma'>();
 
   styles: Style[] = [];

@@ -1,19 +1,25 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { StyleModule } from './styles/style.module';
 import { MovesModule } from './moves/moves.module';
 import { AudioModule } from './audio/audio.module';
 import { WorkoutModule } from './workout/workout.module';
+import { ComboModule } from './combo/combo.module';
+import { HistoryModule } from './history/history.module';
 
 @Component({
   selector: 'app-root',
-  standalone: false,
+  standalone: true,
   imports: [
     RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
     StyleModule,
     MovesModule,
     AudioModule,
-    WorkoutModule
+    WorkoutModule,
+    ComboModule,
+    HistoryModule
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.css']

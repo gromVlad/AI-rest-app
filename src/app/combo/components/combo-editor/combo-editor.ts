@@ -7,7 +7,7 @@ import { Move, Combo } from '../../../models';
 
 @Component({
   selector: 'app-combo-editor',
-  standalone: false,
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './combo-editor.html',
   styleUrls: ['./combo-editor.css']

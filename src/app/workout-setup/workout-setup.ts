@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { WorkoutConfig } from '../models';
 import { WorkoutService } from '../workout/workout.service';
 
 @Component({
   selector: 'app-workout-setup',
-  standalone: false,
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './workout-setup.html',
   styleUrls: ['./workout-setup.css']
 })

@@ -3,39 +3,39 @@
     <div class="timer">{{ getRoundTimeFormatted() }}</div>
     <div class="round-info">Раунд {{ state?.currentRound }} из {{ state?.totalRounds }}</div>
   </div>
-  
+
   <div class="workout-main">
     <div class="current-move" *ngIf="state?.currentMove">
-      <h2>{{ state.currentMove.name }}</h2>
+      <h2>{{ state?.currentMove?.name }}</h2>
     </div>
-    
+
     <div class="status-info">
       <p>Статус: {{ state?.status || 'Неизвестен' }}</p>
-      <p *ngIf="state?.restTime && state.restTime > 0">Время отдыха: {{ getRestTimeFormatted() }}</p>
+      <p *ngIf="showRestTime()">Время отдыха: {{ getRestTimeFormatted() }}</p>
     </div>
   </div>
-  
+
   <div class="workout-controls">
-    <button 
-      *ngIf="state?.status === 'idle' || state?.status === 'paused'" 
-      (click)="startWorkout()" 
+    <button
+      *ngIf="state?.status === 'idle' || state?.status === 'paused'"
+      (click)="startWorkout()"
       class="control-button start">
       Старт
     </button>
-    <button 
-      *ngIf="state?.status === 'running'" 
-      (click)="pauseWorkout()" 
+    <button
+      *ngIf="state?.status === 'running'"
+      (click)="pauseWorkout()"
       class="control-button pause">
       Пауза
     </button>
-    <button 
-      *ngIf="state?.status === 'paused'" 
-      (click)="resumeWorkout()" 
+    <button
+      *ngIf="state?.status === 'paused'"
+      (click)="resumeWorkout()"
       class="control-button resume">
       Продолжить
     </button>
-    <button 
-      (click)="stopWorkout()" 
+    <button
+      (click)="stopWorkout()"
       class="control-button stop">
       Стоп
     </button>

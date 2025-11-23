@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { WorkoutService, WorkoutState } from '../workout/workout.service';
 
 @Component({
   selector: 'app-workout-display',
-  standalone: false,
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './workout-display.html',
   styleUrls: ['./workout-display.css']
 })
@@ -60,5 +61,9 @@ export class WorkoutDisplayComponent implements OnInit, OnDestroy {
     const minutes = Math.floor(this.state.restTime / 60);
     const seconds = Math.floor(this.state.restTime % 60);
     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  }
+
+  showRestTime(): boolean {
+    return this.state?.restTime != null && this.state.restTime > 0;
   }
 }

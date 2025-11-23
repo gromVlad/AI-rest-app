@@ -4,7 +4,7 @@ import { StyleSelectorComponent } from '../styles/components/style-selector/styl
 
 @Component({
   selector: 'app-home',
-  standalone: false,
+  standalone: true,
   imports: [StyleSelectorComponent],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
