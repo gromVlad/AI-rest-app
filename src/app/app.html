@@ -1,12 +1,20 @@
 <div class="app-container">
   <header>
     <h1>Бой с тенью</h1>
+    <nav>
+      <ul class="nav-links">
+        <li><a routerLink="/" routerLinkActive="active">Главная</a></li>
+        <li><a routerLink="/workout-setup" routerLinkActive="active">Тренировка</a></li>
+        <li><a routerLink="/combo-editor" routerLinkActive="active">Комбинации</a></li>
+        <li><a routerLink="/history" routerLinkActive="active">История</a></li>
+      </ul>
+    </nav>
   </header>
-  
+
   <main>
     <router-outlet />
   </main>
-  
+
   <footer>
     <p>Тренировочный комплекс для бойцов</p>
   </footer>

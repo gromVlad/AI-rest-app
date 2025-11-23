@@ -16,6 +16,33 @@ header h1 {
   font-size: 1.8rem;
 }
 
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1rem 0 0 0;
+  padding: 0;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background-color: #34495e;
+  text-decoration: underline;
+}
+
 main {
   flex: 1;
   padding: 2rem;
