@@ -141,18 +141,25 @@ export class WorkoutService implements OnDestroy {
   }
 
   private generateAndPlayMove(): void {
-    if (!this.config) return;
+    console.log('Начинаем генерацию и воспроизведение движения');
+    if (!this.config) {
+      console.log('Конфигурация тренировки отсутствует');
+      return;
+    }
 
     const moves = this.moveService.getMovesForStyle(this.config.style);
+    console.log('Доступные движения для стиля', this.config.style, ':', moves.length);
 
     let move: Move | undefined;
 
     // Depending on the mode, generate either a random move or a combo sequence
     if (this.config.mode === 'random') {
       // Select a random move
+      console.log('Режим: случайные удары');
       move = moves[Math.floor(Math.random() * moves.length)];
     } else if (this.config.mode === 'combos') {
       // Select a random combo and play the next move in it
+      console.log('Режим: случайные комбинации');
       const combos = this.comboService.getCombosForStyle(this.config.style);
       if (combos.length > 0) {
         const randomCombo = combos[Math.floor(Math.random() * combos.length)];
@@ -160,10 +167,12 @@ export class WorkoutService implements OnDestroy {
         move = this.moveService.getMoveById(randomMoveId);
       } else {
         // If no combos available, fallback to random moves
+        console.log('Нет доступных комбинаций, используем случайные удары');
         move = moves[Math.floor(Math.random() * moves.length)];
       }
     } else if (this.config.mode === 'user-combos') {
       // Use only user-created combos
+      console.log('Режим: пользовательские комбинации');
       const userCombos = this.comboService.getUserCombosForStyle(this.config.style);
       if (userCombos.length > 0) {
         const randomCombo = userCombos[Math.floor(Math.random() * userCombos.length)];
@@ -171,13 +180,15 @@ export class WorkoutService implements OnDestroy {
         move = this.moveService.getMoveById(randomMoveId);
       } else {
         // If no user combos available, fallback to random moves
+        console.log('Нет пользовательских комбинаций, используем случайные удары');
         move = moves[Math.floor(Math.random() * moves.length)];
       }
     }
 
     if (move) {
+      console.log('Выбрано движение:', move.name, 'с id:', move.id);
       // Play the audio for the move
-      this.audioService.playMoveAudio(move.name);
+      this.audioService.playMoveAudio(move.name, move.id);
 
       // Update the state with the current move
       const currentState = this.stateSubject.value;
@@ -186,6 +197,8 @@ export class WorkoutService implements OnDestroy {
         currentMove: move
       };
       this.stateSubject.next(newState);
+    } else {
+      console.log('Не удалось выбрать движение');
     }
   }
 

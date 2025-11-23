@@ -38,6 +38,7 @@ export class AudioService {
   }
 
   async playAudio(audioUrl: string): Promise<void> {
+    console.log('Пытаемся воспроизвести аудио:', audioUrl);
     return new Promise((resolve, reject) => {
       if (this.activeAudio) {
         this.activeAudio.pause();
@@ -45,34 +46,46 @@ export class AudioService {
       }
 
       this.activeAudio = new Audio(audioUrl);
-      
+
       this.activeAudio.addEventListener('ended', () => {
+        console.log('Аудио закончилось:', audioUrl);
         resolve();
         this.activeAudio = null;
       });
-      
+
       this.activeAudio.addEventListener('error', (e) => {
         console.error('Error playing audio:', e);
+        console.error('Не удалось воспроизвести аудио:', audioUrl);
         reject(e);
         this.activeAudio = null;
       });
 
+      this.activeAudio.addEventListener('canplaythrough', () => {
+        console.log('Аудио готово к воспроизведению:', audioUrl);
+      });
+
       // Play the audio
-      this.activeAudio.play().catch(error => {
+      this.activeAudio.play().then(() => {
+        console.log('Аудио начало воспроизводиться:', audioUrl);
+      }).catch(error => {
         console.error('Error starting audio:', error);
+        console.error('Не удалось начать воспроизведение аудио:', audioUrl);
         reject(error);
       });
     });
   }
 
-  async playMoveAudio(moveName: string): Promise<void> {
-    // In a real implementation, you would map the move name to its audio file
-    // For now, we'll use a generic approach
-    const audioUrl = `assets/audio/${moveName.toLowerCase().replace(/\s+/g, '-')}.mp3`;
+  async playMoveAudio(moveName: string, moveId?: string): Promise<void> {
+    console.log('Попытка воспроизвести аудио для движения:', moveName, 'ID:', moveId);
+    // Используем moveId если он предоставлен, иначе пытаемся использовать имя
+    const audioFileName = moveId ? moveId : moveName.toLowerCase().replace(/\s+/g, '-');
+    const audioUrl = `assets/audio/${audioFileName}.mp3`;
+    console.log('Ожидаемый путь к аудиофайлу:', audioUrl);
     return this.playAudio(audioUrl);
   }
 
   async playSystemAudio(systemCommand: 'start' | 'pause' | 'stop' | 'five-seconds'): Promise<void> {
+    console.log('Попытка воспроизвести системное аудио:', systemCommand);
     // Map system commands to audio files
     const audioMap: Record<string, string> = {
       'start': 'assets/audio/round-start.mp3',
@@ -80,9 +93,10 @@ export class AudioService {
       'stop': 'assets/audio/stop.mp3',
       'five-seconds': 'assets/audio/five-seconds.mp3'
     };
-    
+
     const audioUrl = audioMap[systemCommand];
     if (audioUrl) {
+      console.log('Ожидаемый путь к системному аудиофайлу:', audioUrl);
       return this.playAudio(audioUrl);
     } else {
       console.warn(`No audio file mapped for system command: ${systemCommand}`);
