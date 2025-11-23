@@ -1,0 +1,13 @@
+<div class="style-selector">
+  <h2>Выберите стиль тренировки</h2>
+  <div class="style-cards">
+    <div
+      *ngFor="let style of styles"
+      class="style-card"
+      (click)="selectStyle(style.id)"
+    >
+      <h3>{{ style.displayName }}</h3>
+      <p>{{ style.description }}</p>
+    </div>
+  </div>
+</div>

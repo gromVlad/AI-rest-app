@@ -1,0 +1,89 @@
+.workout-display-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem;
+}
+
+.workout-header {
+  margin-bottom: 3rem;
+}
+
+.timer {
+  font-size: 5rem;
+  font-weight: bold;
+  color: #e74c3c;
+  margin-bottom: 0.5rem;
+  font-family: 'Courier New', monospace;
+}
+
+.round-info {
+  font-size: 1.5rem;
+  color: #34495e;
+}
+
+.workout-main {
+  margin: 3rem 0;
+}
+
+.current-move h2 {
+  font-size: 3rem;
+  color: #2c3e50;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.status-info {
+  margin-top: 2rem;
+  color: #7f8c8d;
+}
+
+.workout-controls {
+  margin-top: 3rem;
+}
+
+.control-button {
+  padding: 1rem 2rem;
+  margin: 0 0.5rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.control-button.start {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.control-button.start:hover {
+  background-color: #27ae60;
+}
+
+.control-button.pause {
+  background-color: #f39c12;
+  color: white;
+}
+
+.control-button.pause:hover {
+  background-color: #d35400;
+}
+
+.control-button.resume {
+  background-color: #3498db;
+  color: white;
+}
+
+.control-button.resume:hover {
+  background-color: #2980b9;
+}
+
+.control-button.stop {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.control-button.stop:hover {
+  background-color: #c0392b;
+}

@@ -1,0 +1,84 @@
+<div class="combo-editor-container">
+  <h2>Редактор комбинаций</h2>
+  
+  <div class="style-selector">
+    <label>Выберите стиль:</label>
+    <select [value]="selectedStyle" (change)="onStyleChange($any($event.target).value)">
+      <option value="boxing">Бокс</option>
+      <option value="muaythai">Муай Тай</option>
+      <option value="mma">MMA</option>
+    </select>
+  </div>
+  
+  <div class="combo-creation">
+    <h3>Создание новой комбинации</h3>
+    
+    <div class="combo-name-input">
+      <label for="combo-name">Название комбинации:</label>
+      <input 
+        type="text" 
+        id="combo-name" 
+        [(ngModel)]="comboName" 
+        placeholder="Введите название комбинации">
+    </div>
+    
+    <div class="selected-moves">
+      <h4>Выбранные удары:</h4>
+      <div class="moves-list" *ngIf="selectedMoves.length > 0; else noMoves">
+        <div 
+          *ngFor="let move of selectedMoves; let i = index; trackBy: trackByIndex" 
+          class="selected-move">
+          <span>{{ move.name }}</span>
+          <button (click)="removeMoveFromCombo(i)" class="remove-move-btn">Удалить</button>
+        </div>
+      </div>
+      <ng-template #noMoves>
+        <p>Пока нет выбранных ударов</p>
+      </ng-template>
+      
+      <button 
+        *ngIf="selectedMoves.length > 0" 
+        (click)="saveCombo()" 
+        class="save-combo-btn">
+        Сохранить комбинацию
+      </button>
+    </div>
+    
+    <div class="available-moves">
+      <h4>Доступные удары:</h4>
+      <div class="moves-grid">
+        <div 
+          *ngFor="let move of availableMoves; trackBy: trackByMoveId" 
+          (click)="addMoveToCombo(move)"
+          class="move-card">
+          {{ move.name }}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="saved-combos">
+    <h3>Сохраненные комбинации</h3>
+    <div *ngIf="savedCombos.length > 0; else noSavedCombos">
+      <div *ngFor="let combo of savedCombos" class="combo-item">
+        <div class="combo-header">
+          <span class="combo-name">{{ combo.name }}</span>
+          <div class="combo-actions">
+            <button (click)="useCombo(combo)" class="use-combo-btn">Использовать</button>
+            <button (click)="deleteCombo(combo.id)" class="delete-combo-btn">Удалить</button>
+          </div>
+        </div>
+        <div class="combo-moves">
+          <span 
+            *ngFor="let moveId of combo.moves; let i = index" 
+            class="combo-move">
+            {{ i > 0 ? ' → ' : '' }}{{ getMoveName(moveId) }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <ng-template #noSavedCombos>
+      <p>Нет сохраненных комбинаций</p>
+    </ng-template>
+  </div>
+</div>

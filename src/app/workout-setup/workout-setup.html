@@ -1,0 +1,63 @@
+<div class="workout-setup-container">
+  <h2>Настройка тренировки</h2>
+  
+  <div class="setup-form">
+    <!-- Rounds -->
+    <div class="form-group">
+      <label for="rounds">Количество раундов (1-12):</label>
+      <input 
+        type="number" 
+        id="rounds" 
+        [value]="workoutConfig.rounds" 
+        (input)="onRoundsChange($any($event.target).value)"
+        min="1" 
+        max="12">
+    </div>
+    
+    <!-- Round Duration -->
+    <div class="form-group">
+      <label for="round-duration">Длительность раунда (30-300 сек):</label>
+      <input 
+        type="number" 
+        id="round-duration" 
+        [value]="workoutConfig.roundDuration" 
+        (input)="onRoundDurationChange($any($event.target).value)"
+        min="30" 
+        max="300">
+    </div>
+    
+    <!-- Rest Duration -->
+    <div class="form-group">
+      <label for="rest-duration">Пауза между раундами (15-90 сек):</label>
+      <input 
+        type="number" 
+        id="rest-duration" 
+        [value]="workoutConfig.restDuration" 
+        (input)="onRestDurationChange($any($event.target).value)"
+        min="15" 
+        max="90">
+    </div>
+    
+    <!-- Speed -->
+    <div class="form-group">
+      <label for="speed">Скорость:</label>
+      <select id="speed" [value]="workoutConfig.speed" (change)="onSpeedChange($any($event.target).value)">
+        <option value="slow">Низкая</option>
+        <option value="medium">Средняя</option>
+        <option value="fast">Высокая</option>
+      </select>
+    </div>
+    
+    <!-- Mode -->
+    <div class="form-group">
+      <label for="mode">Режим генерации:</label>
+      <select id="mode" [value]="workoutConfig.mode" (change)="onModeChange($any($event.target).value)">
+        <option value="random">Случайные удары</option>
+        <option value="combos">Случайные комбинации</option>
+        <option value="user-combos">Свои комбинации</option>
+      </select>
+    </div>
+    
+    <button class="start-button" (click)="startWorkout()">Начать тренировку</button>
+  </div>
+</div>

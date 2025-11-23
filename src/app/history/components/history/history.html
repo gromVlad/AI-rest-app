@@ -1,0 +1,60 @@
+<div class="history-container">
+  <h2>История тренировок</h2>
+  
+  <div class="controls">
+    <div class="style-filter">
+      <label for="style-filter">Фильтр по стилю:</label>
+      <select id="style-filter" [value]="selectedStyle" (change)="onStyleChange($any($event.target).value)">
+        <option value="all">Все стили</option>
+        <option value="boxing">Бокс</option>
+        <option value="muaythai">Муай Тай</option>
+        <option value="mma">MMA</option>
+      </select>
+    </div>
+    
+    <button *ngIf="workoutSessions.length > 0" (click)="clearAllHistory()" class="clear-history-btn">
+      Очистить историю
+    </button>
+  </div>
+  
+  <div *ngIf="workoutSessions.length > 0; else noHistory">
+    <div *ngFor="let session of workoutSessions" class="session-card">
+      <div class="session-header">
+        <div class="session-date">{{ formatDate(session.date) }}</div>
+        <button (click)="deleteSession(session.id)" class="delete-session-btn">Удалить</button>
+      </div>
+      
+      <div class="session-details">
+        <div class="detail-item">
+          <span class="label">Стиль:</span>
+          <span class="value">{{ session.style === 'boxing' ? 'Бокс' : session.style === 'muaythai' ? 'Муай Тай' : 'MMA' }}</span>
+        </div>
+        
+        <div class="detail-item">
+          <span class="label">Тип тренировки:</span>
+          <span class="value">
+            {{ session.type === 'random' ? 'Случайные удары' : 
+               session.type === 'combos' ? 'Случайные комбинации' : 'Свои комбинации' }}
+          </span>
+        </div>
+        
+        <div class="detail-item">
+          <span class="label">Раунды:</span>
+          <span class="value">{{ session.rounds }}</span>
+        </div>
+        
+        <div class="detail-item">
+          <span class="label">Длительность:</span>
+          <span class="value">{{ formatDuration(session.duration) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noHistory>
+    <div class="no-history">
+      <p>История тренировок пуста</p>
+      <p>После завершения тренировок они будут отображаться здесь</p>
+    </div>
+  </ng-template>
+</div>

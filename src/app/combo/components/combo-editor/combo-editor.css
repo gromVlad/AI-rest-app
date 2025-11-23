@@ -1,0 +1,193 @@
+.combo-editor-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.combo-editor-container h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+}
+
+.style-selector {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.style-selector label {
+  margin-right: 1rem;
+  font-weight: bold;
+  color: #34495e;
+}
+
+.style-selector select {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+.combo-creation {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.combo-creation h3 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.combo-name-input {
+  margin-bottom: 1.5rem;
+}
+
+.combo-name-input label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #34495e;
+}
+
+.combo-name-input input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.selected-moves {
+  margin-bottom: 2rem;
+}
+
+.selected-moves h4 {
+  margin-bottom: 1rem;
+  color: #34495e;
+}
+
+.moves-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.selected-move {
+  display: flex;
+  align-items: center;
+  background: #3498db;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.selected-move .remove-move-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.save-combo-btn {
+  background: #2ecc71;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.save-combo-btn:hover {
+  background: #27ae60;
+}
+
+.available-moves h4 {
+  margin: 1.5rem 0 1rem 0;
+  color: #34495e;
+}
+
+.moves-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.move-card {
+  background: #ecf0f1;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.move-card:hover {
+  background: #d5dbdb;
+  transform: translateY(-2px);
+}
+
+.saved-combos h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.combo-item {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.combo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.combo-name {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.combo-actions button {
+  margin-left: 0.5rem;
+  padding: 0.3rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.use-combo-btn {
+  background: #3498db;
+  color: white;
+}
+
+.delete-combo-btn {
+  background: #e74c3c;
+  color: white;
+}
+
+.combo-moves {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.combo-move {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
